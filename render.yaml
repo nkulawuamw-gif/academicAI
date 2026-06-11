@@ -5,6 +5,7 @@ services:
     repo: https://github.com/nkulawuamw-gif/academicAI
     branch: main
     rootDir: backend
+    dockerfilePath: Dockerfile
     plan: free
     healthCheckPath: /health
     envVars:
