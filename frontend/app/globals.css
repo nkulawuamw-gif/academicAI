@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .prose-custom {
+    @apply max-w-none;
+  }
+
+  .prose-custom p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose-custom h1, .prose-custom h2, .prose-custom h3 {
+    @apply font-semibold mt-6 mb-3;
+  }
+
+  .prose-custom ul {
+    @apply list-disc pl-6 mb-4;
+  }
+
+  .prose-custom ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+
+  .prose-custom li {
+    @apply mb-1;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-4 border-primary-300 pl-4 italic text-gray-600 mb-4;
+  }
+
+  .prose-custom code {
+    @apply bg-gray-100 rounded px-1.5 py-0.5 text-sm font-mono;
+  }
+
+  .prose-custom pre {
+    @apply bg-gray-900 text-gray-100 rounded-lg p-4 mb-4 overflow-x-auto;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

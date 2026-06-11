@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: academai-backend
+    runtime: docker
+    repo: https://github.com/YOUR_USERNAME/academai
+    branch: main
+    rootDir: backend
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: LLM_PROVIDER
+        value: auto
+      - key: GOOGLE_GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: academai-db
+          property: connectionString
+      - key: NEXT_PUBLIC_FRONTEND_URL
+        fromService:
+          type: web
+          name: academai-frontend
+          property: host
+
+  - type: web
+    name: academai-frontend
+    runtime: node
+    repo: https://github.com/YOUR_USERNAME/academai
+    branch: main
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: academai-backend
+          property: host
+      - key: NEXT_PUBLIC_FRONTEND_URL
+        value: https://academai-frontend.onrender.com
+
+databases:
+  - name: academai-db
+    plan: free
+    databaseType: postgres
+    ipAllowList: []
