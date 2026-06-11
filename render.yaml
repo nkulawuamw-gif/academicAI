@@ -2,9 +2,11 @@ services:
   - type: web
     name: academai-backend
     runtime: docker
-    repo: https://github.com/YOUR_USERNAME/academai
+    repo: https://github.com/nkulawuamw-gif/academicAI
     branch: main
     rootDir: backend
+    plan: free
+    healthCheckPath: /health
     envVars:
       - key: ENVIRONMENT
         value: production
@@ -29,11 +31,13 @@ services:
   - type: web
     name: academai-frontend
     runtime: node
-    repo: https://github.com/YOUR_USERNAME/academai
+    repo: https://github.com/nkulawuamw-gif/academicAI
     branch: main
     rootDir: frontend
+    plan: free
     buildCommand: npm install && npm run build
     startCommand: npm start
+    healthCheckPath: /
     envVars:
       - key: NODE_ENV
         value: production
@@ -42,8 +46,6 @@ services:
           type: web
           name: academai-backend
           property: host
-      - key: NEXT_PUBLIC_FRONTEND_URL
-        value: https://academai-frontend.onrender.com
 
 databases:
   - name: academai-db

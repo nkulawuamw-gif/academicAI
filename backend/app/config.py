@@ -28,8 +28,9 @@ class Settings(BaseSettings):
     CHROMA_HOST: str = "localhost"
     CHROMA_PORT: int = 8000
 
-    # Frontend
+    # Frontend / CORS
     NEXT_PUBLIC_FRONTEND_URL: str = "http://localhost:3000"
+    CORS_ORIGINS: str = ""  # comma-separated, e.g. "https://site1.com,https://site2.com"
 
     # General
     ENVIRONMENT: str = "development"

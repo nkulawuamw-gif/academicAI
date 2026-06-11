@@ -26,9 +26,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+cors_origins = [settings.NEXT_PUBLIC_FRONTEND_URL, "http://localhost:3000"]
+if settings.CORS_ORIGINS:
+    cors_origins.extend([o.strip() for o in settings.CORS_ORIGINS.split(",") if o.strip()])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.NEXT_PUBLIC_FRONTEND_URL, "http://localhost:3000"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
