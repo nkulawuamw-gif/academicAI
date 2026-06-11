@@ -34,10 +34,9 @@ services:
     runtime: node
     repo: https://github.com/nkulawuamw-gif/academicAI
     branch: main
-    rootDir: frontend
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
     healthCheckPath: /
     envVars:
       - key: NODE_ENV
